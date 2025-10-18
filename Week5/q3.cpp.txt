@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+struct Stack{
+        int stack[100];
+        int top;
+        int size;
+        bool isPalindrome;
+};
+bool isFull(Stack *inst){
+        if (inst -> top == inst -> size){
+                return true;}
+        else{
+                return false;}
+}
+void push(Stack *inst, char element){
+        if (isFull(inst)){
+                cout<<"\n Overflow, stack is full. \n";
+                return;}
+        inst -> stack[inst -> top] = element;
+        inst -> top++;
+}
+int pop(Stack *inst)
+{
+        return inst -> stack[--inst -> top];
+}
+int main()
+{
+        Stack inst;
+        inst.top = 0;
+        inst.size = 100;
+        inst.isPalindrome = true;
+        char str[100];
+        cout<<"\n Enter the string\n";
+        cin.get(str,100);
+        for(int i = 0; str[i] != '\0'; i++)
+                push(&inst, str[i]);
+        for(int i = 0; str[i] != '\0'; i++){
+                if (pop(&inst) != str[i])
+                                inst.isPalindrome = false;}
+        if (inst.isPalindrome == false)
+                cout<<"\n Not a palindrome. \n";
+        else
+                cout<<"\n Palindrome \n";
+};
+~                                                                                                                                                                                                                                            ~                                                                                                                                                                                                                                            ~                                                                                                                                                                                                                                            ~                                                  

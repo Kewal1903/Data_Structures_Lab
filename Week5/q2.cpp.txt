@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+struct Stack{
+        int stack[100];
+        int top;
+        int size;
+        bool isValid;
+};
+bool isFull(Stack *inst){
+        if (inst -> top == inst -> size){
+                return true;}
+        else{
+                return false;}
+}
+bool isEmpty(Stack *inst){
+        if (inst -> top == 0){
+                return true;}
+        else{
+                return false;}
+}
+void push(Stack *inst, int element){
+        if (isFull(inst)){
+                cout<<"\n Overflow, stack is full. \n";
+                return;}
+        inst -> stack[inst -> top] = element;
+        inst -> top++;
+}
+void pop(Stack *inst, char element){
+        if (isEmpty(inst)){
+                inst -> isValid = false;
+                return;}
+        --inst -> top;
+        char top = inst -> stack[inst -> top];
+        switch(element)
+        {
+                case(')'):
+                        {
+                                if (top != '(')
+                                        inst -> isValid = false;
+                        }
+                        break;
+                case('}'):
+                        {
+                                if (top != '{')
+                                        inst -> isValid = false;
+                        }
+                        break;
+                case(']'):
+                        {
+                                if (top != '[')
+                                        inst -> isValid = false;
+                        }
+                        break;
+
+
+
+}}
+int main(){
+        Stack inst;
+        inst.top = 0;
+        inst.size = 100;
+        inst.isValid = true;

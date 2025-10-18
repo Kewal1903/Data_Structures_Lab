@@ -1,0 +1,89 @@
+#include<iostream>
+using namespace std;
+struct Stack{
+        int stack[10];
+        int top;
+        int size;
+};
+bool isFull(Stack *inst){
+        if (inst -> top == inst -> size){
+                cout<<"\n Stack is full. \n";
+                return true;}
+        else{
+                cout<<"\n Stack is not full. \n";
+                return false;}
+}
+bool isEmpty(Stack *inst){
+        if (inst -> top == 0){
+                cout<<"\n Stack is empty. \n";
+
+                return true;}
+        else{
+                cout<<"\n Stack is not empty. \n";
+                return false;}
+}
+void push(Stack *inst, int element){
+        if (isFull(inst)){
+                cout<<"\n Overflow, stack is full. \n";
+                return;}
+        inst -> stack[inst -> top] = element;
+        inst -> top++;
+        cout<<element<<" added to stack. \n";
+}
+void display(Stack *inst){
+        if (isEmpty(inst)){
+                cout<<"\n Stack is empty. \n";
+                return;}
+        cout<<"\n Existing stack is: \n";
+        for(int i = inst->top-1; i>=0; i--){
+                cout<<inst -> stack[i]<<" ";}
+        cout<<"\n";
+}
+void pop(Stack *inst){
+        if (isEmpty(inst)){
+                cout<<"\n Underflow, stack is empty. \n";
+                return;}
+        cout<<inst -> stack[--inst -> top]<<" popped from stack. \n";
+}
+void peek(Stack *inst){
+        if (isEmpty(inst)){
+                cout<<"\n Underflow, stack is empty. \n";
+                return;}
+        cout<<"\n The last element in the stack is: \n";
+        cout<< inst -> stack[inst -> top-1]<<"\n";
+}
+int main(){
+        Stack inst;
+        inst.top = 0;
+        inst.size = 10;
+        int operation = 0;
+        cout<<"\n Enter 1 to check whether stack is full. \n";
+        cout<<"\n Enter 2 to check whether stack is empty. \n";
+        cout<<"\n Enter 3 to insert an element in the stack. \n";
+        cout<<"\n Enter 4 to display the existing stack. \n";
+	cout<<"\n Enter 5 to remove the last element of the stack. \n";
+        cout<<"\n Enter 6 to display the last element of the stack. \n";
+        cout<<"\n Enter 7 to exit. \n";
+        while (operation != 7){
+                cout<<"\n Enter a number: \n";
+                cin>>operation;
+                if (operation == 1)
+                        isFull(&inst);
+                else if (operation == 2)
+                        isEmpty(&inst);
+                else if (operation == 3){
+                        int element;
+                        cout<<"\n Enter an element to insert: \n";
+                        cin>>element;
+                        push(&inst,element);}
+                else if(operation == 4)
+                        display(&inst);
+                else if(operation == 5)
+                        pop(&inst);
+                else if(operation == 6)
+                        peek(&inst);
+                else if(operation < 1 || operation > 7)
+                        cout<<"\n Enter valid number: \n";
+
+        }
+}
